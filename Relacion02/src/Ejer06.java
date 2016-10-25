@@ -19,10 +19,12 @@ public class Ejer06 {
 		numB = Integer.parseInt(teclado.nextLine());
 
 		if (numA < 0) {
+			numA = numA * -1;
 			signo = signo * -1;
 		}
 
 		if (numB < 0) {
+			numB = numB * -1;
 			signo = signo * -1;
 		}
 
