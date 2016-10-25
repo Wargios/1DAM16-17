@@ -14,6 +14,7 @@ public class Ejer02 {
 
 	public static void main(String[] args) {
 		int base, exponente, resultado = 1;
+		
 		do {
 			System.out.println("Introduce la base:");
 			base = Integer.parseInt(teclado.nextLine());
@@ -23,9 +24,12 @@ public class Ejer02 {
 			System.out.println("Introduce el exponente:");
 			exponente = Integer.parseInt(teclado.nextLine());
 		} while (base < 0);
+		
 		if (base == 0 && exponente == 00) {
 			System.out.println("No se puede hacer esta operacion ");
+			
 		} else {
+			
 			for (int i = 0; i < exponente; i++) {
 				resultado = resultado * base;
 			}
