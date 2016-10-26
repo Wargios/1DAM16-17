@@ -8,18 +8,21 @@ import java.util.Scanner;
  */
 public class EjerClase01 {
 	private static Scanner teclado = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		int num, totalcifras, numActual;
+		int num, sumaCifras, numActual;
 
 		num = Integer.parseInt(teclado.nextLine());
 		numActual = num;
 
-		totalcifras = 1;
-		while (numActual / 10 != 0) {
+		sumaCifras = 0;
+		
+		while (numActual != 0) {
+			sumaCifras = sumaCifras + (numActual % 10);
 			numActual = numActual / 10;
-			totalcifras++;
+
 		}
-		System.out.println("El numero " + num + " tiene " + totalcifras + " cifras.");
+		System.out.println("Al numero " + num + " le suman las cifras un total de " + sumaCifras + ".");
 	}
 
 }
