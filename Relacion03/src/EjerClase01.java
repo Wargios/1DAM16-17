@@ -12,11 +12,13 @@ public class EjerClase01 {
 	public static void main(String[] args) {
 		int num, sumaCifras, numActual;
 
-		num = Integer.parseInt(teclado.nextLine());
-		numActual = num;
+		do {
+			num = Integer.parseInt(teclado.nextLine());
+			numActual = num;
+		} while (num <= 0);
 
 		sumaCifras = 0;
-		
+
 		while (numActual != 0) {
 			sumaCifras = sumaCifras + (numActual % 10);
 			numActual = numActual / 10;
