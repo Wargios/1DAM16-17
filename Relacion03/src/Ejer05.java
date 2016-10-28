@@ -16,8 +16,8 @@ public class Ejer05 {
 
 		esprimo = true;
 		num = Integer.parseInt(teclado.nextLine());
-		contador = num;
-		
+		contador = num / 2;
+
 		while (esprimo && contador > 2) {
 			contador--;
 			if (num % contador == 0) {
