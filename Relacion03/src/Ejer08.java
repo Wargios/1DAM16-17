@@ -10,21 +10,40 @@ import java.util.Scanner;
  * @author Francisco José González Jiménez
  *
  */
+
+// Si la raíz cuadrada de numeroB elevado a 2 - 4 por numeroA por
+// numeroC es menor a 0, la ecuación no tiene solución
+
+// if (Math.sqrt((numeroB * numeroB) - (4 * numeroA * numeroC)) < 0) {
+// System.out.println("Error, la ecuación no tiene solución");
+
 public class Ejer08 {
 	private static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		double a, b, c, resul1, resul2;
+		double a, b, c, x1, x2;
+		boolean hayResultado = false;
 
+		System.out.println("A*x^2 + B*x + C = 0");
 		System.out.println("Introduce 3 numeros para resolver la ecuacion de segundo grado:");
 
 		a = Double.parseDouble(teclado.nextLine());
 		b = Double.parseDouble(teclado.nextLine());
 		c = Double.parseDouble(teclado.nextLine());
 
-		resul1 = 0;
-		resul2 = 0;
+		x1 = (-b + Math.sqrt(b * b - 4 * a * c) / 2 * a);
+		x2 = (-b - Math.sqrt(b * b - 4 * a * c) / 2 * a);
 
-		System.out.println();
+		if (a * x1 * a * x1 + b * x1 + c == 0) {
+			System.out.println("x = " + x1);
+			hayResultado = true;
+		}
+		if (a * x2 * a * x2 + b * x2 + c == 0) {
+			System.out.println("x = " + x2);
+			hayResultado = true;
+		}
+		if (!hayResultado)
+			System.out.println("No hay resultados posibles para 'x'");
+
 	}
 }
