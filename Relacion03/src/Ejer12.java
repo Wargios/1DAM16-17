@@ -40,7 +40,7 @@ public class Ejer12 {
 					System.out.print("* ");
 				}
 
-				for (contadorEspacios = base - contadorAsteriscos; contadorEspacios > 0; contadorEspacios--) {
+				for (contadorEspacios = base - contadorAsteriscos; contadorEspacios >= 0; contadorEspacios--) {
 					System.out.print("  ");
 				}
 			}

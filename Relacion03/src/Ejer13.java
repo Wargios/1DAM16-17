@@ -29,9 +29,9 @@ public class Ejer13 {
 		int anchoRombo, contadorAsteriscos, contadorEspacios, contadorSaltos;
 
 		do {
-			System.out.println("Introduce el ancho del rombo: (debe ser impar)");
+			System.out.println("Introduce el ancho del rombo: (debe ser impar de 1 a 21)");
 			anchoRombo = Integer.parseInt(teclado.nextLine());
-		} while (anchoRombo < 0 || anchoRombo % 2 == 0);
+		} while (anchoRombo < 0 || anchoRombo % 2 == 0||anchoRombo > 21);
 
 		// Primera mitad
 		
