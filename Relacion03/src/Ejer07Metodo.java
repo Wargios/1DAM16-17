@@ -23,10 +23,19 @@ public class Ejer07Metodo {
 	private static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int a, b, aux;
-		System.out.println("Introduce");
+		int a, b, resul;
+		
+		System.out.println("Introduce dos numeros");
 		a = Integer.parseInt(teclado.nextLine());
 		b = Integer.parseInt(teclado.nextLine());
+
+		resul = mcdEuclides(a, b);
+		System.out.println(resul);
+
+	}
+
+	private static int mcdEuclides(int a, int b) {
+		int aux;
 
 		while (b != 0) { // método de euclides
 			aux = b;
@@ -34,7 +43,7 @@ public class Ejer07Metodo {
 			a = aux;
 
 		}
-		System.out.println(a);
 
+		return a;
 	}
 }
