@@ -14,8 +14,8 @@ public class Ejer04Metodo {
 		int a, b, mcd = 0;
 
 		System.out.println("Introduce dos números");
-		a = solicitarNum(1);
-		b = solicitarNum(2);
+		a = Math.abs(solicitarNum(1));
+		b = Math.abs(solicitarNum(2));
 
 		mcd = calcularMcd(a, b, mcd);
 
