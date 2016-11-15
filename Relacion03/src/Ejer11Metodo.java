@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @author alumnodiurno
  *
  */
-public class Ejer11 {
+public class Ejer11Metodo {
 	private static Scanner teclado = new Scanner(System.in);
 	public static void main(String[] args) {
 		int num;
@@ -28,6 +28,9 @@ public class Ejer11 {
 			num = Integer.parseInt(teclado.nextLine());
 		} while (num<=0);
 		
+		pintarTriangulo(num);
+	}
+	private static void pintarTriangulo(int num) {
 		for (int i = 1; i <= num; i++) {
 
 			for (int j = 0; j < i; j++) {

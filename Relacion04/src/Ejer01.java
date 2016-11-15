@@ -22,13 +22,19 @@ public class Ejer01 {
 	private static final int LIMITE_INFERIOR = 0;
 
 	public static void main(String[] args) {
-		
+
 		solicitarNumeroEnRango(LIMITE_INFERIOR, LIMITE_SUPERIOR);
 	}
 
 	private static int solicitarNumeroEnRango(int limiteInferior, int limiteSuperor) {
 		int num = 0;
-		
+
+		if (limiteInferior > limiteInferior) {
+			int aux = limiteInferior;
+			limiteInferior = limiteSuperor;
+			limiteSuperor = aux;
+		}
+
 		do {
 			System.out.println("Introduza un numero comprendido entre" + limiteInferior + " y " + limiteSuperor + ":");
 			num = solicitarNum();
