@@ -26,6 +26,18 @@ public class Ejer01 {
 		solicitarNumeroEnRango(LIMITE_INFERIOR, LIMITE_SUPERIOR);
 	}
 
+	/**
+	 * Solicita un número en el rango de número introducido. No importa si los
+	 * limites se introdujeron al revés, se les intercambiará el valor
+	 * automáticamente.
+	 * 
+	 * @param limiteInferior
+	 *            Primer límite del intervalo
+	 * @param limiteSuperor
+	 *            Segundo límite del intervalo
+	 * @return Devuelve el número si está en el intervalo
+	 */
+
 	private static int solicitarNumeroEnRango(int limiteInferior, int limiteSuperor) {
 		int num = 0;
 
