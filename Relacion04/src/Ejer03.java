@@ -23,8 +23,12 @@ public class Ejer03 {
 	private static boolean esBisisesto(int anno) {
 		boolean resul = false;
 
-		if (anno % 4 == 0 ||(anno % 400 != 0 && anno % 100 == 0)) 
+		if (anno % 4 == 0) {
 			resul = true;
+			if (anno % 100 == 0 && anno % 400 != 0) {
+				resul = false;
+			}
+		}
 		
 		return resul;
 	}

@@ -23,11 +23,14 @@ public class Ejer10Metodo {
 	private static void pintaTriangulo(int num) {
 		for (int i = 1; i <= num; i++) {
 
-			for (int j = 0; j < i; j++) {
-				System.out.print("* ");
-			}
+			pintarAsteriscos(i, '*');
 			
 			System.out.println();
+		}
+	}
+	private static void pintarAsteriscos(int cantidad, char caracter){
+		for (int j = 0; j < cantidad; j++) {
+			System.out.print(caracter);
 		}
 	}
 }
