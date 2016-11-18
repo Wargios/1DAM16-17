@@ -29,8 +29,7 @@ public class Ejer04 {
 			System.out.println("Introduce un mes:");
 			mes = Integer.parseInt(teclado.nextLine());
 		} while (mes < 1 || mes > 12);
-		
-		
+
 		return mes;
 	}
 
@@ -40,11 +39,11 @@ public class Ejer04 {
 			System.out.println("Introduce un año:");
 			anno = Integer.parseInt(teclado.nextLine());
 		} while (anno < 0);
-		
+
 		return anno;
 	}
 
-	private static int diasDeUnMes(int mes, int anno) {
+	public static int diasDeUnMes(int mes, int anno) {
 		int dias;
 
 		if (mes <= 7) { // Diás del 1 al 7
@@ -52,8 +51,15 @@ public class Ejer04 {
 			if (mes % 2 != 0) {// impares
 				dias = 31;
 
-			} else// pares
+			} else {// pares
 				dias = 30;
+				if (mes == 2) { // solo febrero
+					dias = 28;
+					if (esBisisesto(anno)) {
+						dias++;
+					}
+				}
+			}
 
 		} else { // Dias del 8 al 12
 
@@ -62,12 +68,7 @@ public class Ejer04 {
 
 			} else { // pares
 				dias = 31;
-				if (mes == 2) { // solo febrero
-					dias = 28;
-					if (esBisisesto(anno)) {
-						dias++;
-					}
-				}
+
 			}
 		}
 		return dias;

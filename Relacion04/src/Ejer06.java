@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 /**
  * 6. Realizar un método llamado siguienteFecha al que se le pasen 3 parámetros
- * enteros: • diaActual
+ * enteros:
+ * 
+ * • diaActual
  * 
  * • mesActual
  * 
@@ -18,6 +22,69 @@
  * @author alumnodiurno
  *
  */
+
 public class Ejer06 {
+	private static Scanner teclado = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int diaActual, mesActual, annoActual;
+
+		annoActual = solicitarAnno();
+		mesActual = solicitarMes();
+		diaActual = solicitarDia(mesActual, annoActual);
+
+		System.out.println("La fecha de hoy es " + diaActual + "-" + mesActual + "-" + annoActual);
+
+		mostrarDiaSiguiente(annoActual, mesActual, diaActual);
+
+	}
+
+	private static void mostrarDiaSiguiente(int anno, int mes, int dia) {
+		int maxDias = Ejer04.diasDeUnMes(mes, anno);
+		dia++;
+		if (dia > maxDias) {
+			dia -= maxDias;
+			mes++;
+			if (mes > 12) {
+				mes -= 12;
+				anno++;
+			}
+		}
+		System.out.println("La fecha de hoy es " + dia + "-" + mes + "-" + anno);
+
+	}
+
+	private static int solicitarDia(int mes, int anno) {
+		int dia, maxDias;
+		maxDias = Ejer04.diasDeUnMes(mes, anno);
+		do {
+			System.out.println("Introduce el dia: (1-" + maxDias + ")");
+			dia = Integer.parseInt(teclado.nextLine());
+		} while (dia < 1 || dia > maxDias);
+
+		return dia;
+	}
+
+	private static int solicitarMes() {
+		int mes;
+		do {
+			System.out.println("Introduce un mes:");
+			mes = Integer.parseInt(teclado.nextLine());
+		} while (mes < 1 || mes > 12);
+
+		return mes;
+	}
+
+	private static int solicitarAnno() {
+		int anno;
+		do {
+			System.out.println("Introduce un año:");
+			anno = Integer.parseInt(teclado.nextLine());
+		} while (anno < 0);
+
+		return anno;
+	}
+
+	
 
 }
