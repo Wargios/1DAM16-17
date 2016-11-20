@@ -54,7 +54,7 @@ public class Ejer06 {
 
 	}
 
-	private static int solicitarDia(int mes, int anno) {
+	public static int solicitarDia(int mes, int anno) {
 		int dia, maxDias;
 		maxDias = Ejer04.diasDeUnMes(mes, anno);
 		do {
@@ -65,7 +65,7 @@ public class Ejer06 {
 		return dia;
 	}
 
-	private static int solicitarMes() {
+	public static int solicitarMes() {
 		int mes;
 		do {
 			System.out.println("Introduce un mes:");
@@ -75,7 +75,7 @@ public class Ejer06 {
 		return mes;
 	}
 
-	private static int solicitarAnno() {
+	public static int solicitarAnno() {
 		int anno;
 		do {
 			System.out.println("Introduce un año:");
