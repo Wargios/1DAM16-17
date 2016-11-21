@@ -35,7 +35,7 @@ public class Ejer05 {
 		segundosActuales = solicitarSegundos();
 		segundosASumar = solicitarSegundosASumar();
 
-		pintarNuevaHora(horasActuales, minutosActuales, segundosActuales, segundosASumar);
+		pintarNuevaHora2(horasActuales, minutosActuales, segundosActuales, segundosASumar);
 
 	}
 
@@ -78,7 +78,7 @@ public class Ejer05 {
 		return num;
 	}
 
-
+	@SuppressWarnings("unused")
 	private static void pintarNuevaHora(int horasActuales, int minutosActuales, int segundosActuales,
 			int segundosASumar) {
 		segundosActuales += segundosASumar;
@@ -99,12 +99,19 @@ public class Ejer05 {
 				"La hora resultado es " + horasActuales + ":" + minutosActuales + ":" + segundosActuales + ".");
 
 	}
-	@SuppressWarnings("unused")
+
 	private static void pintarNuevaHora2(int horas, int minutos, int segundos, int segundosASumar) {
 		int segundosTotales = segundosASumar + segundos + minutos * 60 + horas * 3600;
 
-		horas = segundosTotales/3600;
-		segundosTotales = segundosTotales%3600;
+		horas = segundosTotales / 3600;
+		segundosTotales = segundosTotales % 3600;
+		minutos = segundosTotales / 60;
+		segundosTotales = segundosTotales % 60;
+		segundos = segundosTotales;
+
+		while (horas > 23) {
+			horas -= 24;
+		}
 
 		System.out.println("La hora resultado es " + horas + ":" + minutos + ":" + segundos + ".");
 

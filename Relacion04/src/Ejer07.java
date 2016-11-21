@@ -35,17 +35,13 @@ public class Ejer07 {
 		mes = Ejer06.solicitarMes();
 		dia = Ejer06.solicitarDia(mes, anno);
 
-		System.out.println("Ese dia cae en " + calcularDiaDeLaSemana(dia, mes, anno) + ".");
+		System.out.println("Ese dia cae en " + diaDeLaSemana(dia, mes, anno) + ".");
 	}
 
-	private static String calcularDiaDeLaSemana(int dia, int mes, int anno) {
-		int a, y, m, d;
-		String diaDeLaSemana = "";
-
-		a = (14 - mes) / 12;
-		y = anno - a;
-		m = mes + 12 * a - 2;
-		d = (dia + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12) % 7;
+	private static String diaDeLaSemana(int dia, int mes, int anno) {
+		String diaDeLaSemana = null;
+		
+		int d = calcularNumeroDiaSemana(dia, mes, anno);
 
 		switch (d) {
 		case 0:
@@ -72,6 +68,16 @@ public class Ejer07 {
 		}
 
 		return diaDeLaSemana;
+	}
+
+	private static int calcularNumeroDiaSemana(int dia, int mes, int anno) {
+		int a, y, m, d;
+		
+		a = (14 - mes) / 12;
+		y = anno - a;
+		m = mes + 12 * a - 2;
+		d = (dia + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12) % 7;
+		return d;
 	}
 
 }
