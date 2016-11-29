@@ -21,7 +21,10 @@ public class Ejer05 {
 
 	private static int ocurrenciasPenultimoCaracter(String cad) {
 		int contadorCaracter=0;
+		cad = cad.toLowerCase();
 		char penultimoCaracter = cad.charAt(cad.length()-2);
+		
+		
 		
 		for (int i = 0; i < cad.length(); i++) {
 			

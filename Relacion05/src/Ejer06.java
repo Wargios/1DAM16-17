@@ -15,23 +15,30 @@ public class Ejer06 {
 
 	public static void main(String[] args) {
 		System.out.println("Introduce una frase para saber cuantas vocales diferentes tiene:");
-		System.out.println("El texto contiene " + contarDiferentesVocales(teclado.nextLine())
-				+ " vocales diferentes.");
+		System.out.println("El texto contiene " + contarDiferentesVocales(teclado.nextLine()) + " vocales diferentes.");
 	}
 
 	private static int contarDiferentesVocales(String cad) {
 		int contador = 0;
+		String vocales = "aeiou";
 
-		if (cad.indexOf('a') >= 0)
-			contador++;
-		if (cad.indexOf('e') >= 0)
-			contador++;
-		if (cad.indexOf('i') >= 0)
-			contador++;
-		if (cad.indexOf('o') >= 0)
-			contador++;
-		if (cad.indexOf('u') >= 0)
-			contador++;
+		cad = cad.toLowerCase();
+
+		for (int i = 0; i < vocales.length(); i++) {
+			if (cad.indexOf(vocales.charAt(i)) >= 0)
+				contador++;
+		}
+		
+		// if (cad.indexOf('a') >= 0)
+		// contador++;
+		// if (cad.indexOf('e') >= 0)
+		// contador++;
+		// if (cad.indexOf('i') >= 0)
+		// contador++;
+		// if (cad.indexOf('o') >= 0)
+		// contador++;
+		// if (cad.indexOf('u') >= 0)
+		// contador++;
 
 		return contador;
 	}
