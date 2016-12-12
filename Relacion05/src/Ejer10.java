@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * 10. Escribir un programa que, devuelva el número de palabras que hay en una
  * cadena introducida por teclado. Ten en cuenta que entre dos palabras puede
@@ -9,8 +11,10 @@
  *
  */
 public class Ejer10 {
+	private static Scanner teclado = new Scanner(System.in);
 	public static void main(String[] args) {
-		System.out.println(cuentaPalabras("Tu mama me toca"));
+		System.out.println("Introduce una frase para contar las palabras:");
+		System.out.println("Tiene "+ cuentaPalabras(teclado.nextLine())+ " palabras.");
 	}
 
 	private static int cuentaPalabras(String cad) {
