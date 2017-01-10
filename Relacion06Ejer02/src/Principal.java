@@ -2,8 +2,14 @@
 public class Principal {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		mostrarMenu();
 
+	}
+
+	private static void mostrarMenu() {
+		System.out.println("Menú");
+		System.out.println();
+		
 	}
 
 }
