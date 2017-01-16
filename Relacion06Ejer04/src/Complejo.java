@@ -46,6 +46,15 @@ public class Complejo {
 		return new Complejo(resReal, resImg);
 	}
 
+	public boolean equals(Complejo otro) {
+		boolean resul = false;
+		
+		if (parteReal == otro.parteReal && parteImaginaria == otro.parteImaginaria)
+			resul = true;
+		
+		return resul;
+	}
+
 	public String toString() {
 		return ("(" + parteReal + "," + parteImaginaria + "i)");
 
