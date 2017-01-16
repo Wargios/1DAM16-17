@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author alumnodiurno
+ *
+ */
 public class Complejo {
 
 	private double parteReal, parteImaginaria;
