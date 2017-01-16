@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class PrincipalEjercicio4 {
+public class PrincipalEjer04 {
 	static Scanner teclado=new Scanner (System.in);
 
 	public static void main(String[] args) {
