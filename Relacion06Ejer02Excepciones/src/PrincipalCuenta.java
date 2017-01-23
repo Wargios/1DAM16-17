@@ -36,7 +36,7 @@ public class PrincipalCuenta {
 				numero = Double.parseDouble(teclado.nextLine());
 				hayError = false;
 			} catch (NumberFormatException ex) {
-				System.out.println("Errro.No es un numero");
+				System.out.println("Error. No es un numero");
 				hayError = true;
 			}
 		} while (hayError || numero < 0);
@@ -44,7 +44,7 @@ public class PrincipalCuenta {
 		return numero;
 	}
 
-	private static int menu() {
+	private static int menu() throws CuentaException {
 		int op = 0;
 
 		do {
@@ -57,10 +57,10 @@ public class PrincipalCuenta {
 				op = Integer.parseInt(teclado.nextLine());
 
 				if (op < 1 || op > 5)
-					System.out.println("Error. Opcion incorrecta");
+					throw new CuentaException("Error. Opcion incorrecta");
 
 			} catch (NumberFormatException e) {
-				System.out.println("Error. Opcion incorrecta");
+				throw new CuentaException("Error. Opcion incorrecta");
 			}
 		} while (op < 1 || op > 5);
 
@@ -72,16 +72,22 @@ public class PrincipalCuenta {
 		char salir = 'n';
 
 		switch (op) {
-		case 1: { // INGRESO
+		case 1: { 
 			cantidad = solicitarDoublePositivo("introduce la cantidad a ingresar:");
-
-			cuenta.ingreso(cantidad);
-
+			try {
+				cuenta.ingreso(cantidad);
+			} catch (CuentaException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
 		}
 		case 2: {
 			cantidad = solicitarDoublePositivo("introduce la cantidad a retirar:");
-			cuenta.reintegro(cantidad);
+			try {
+				cuenta.reintegro(cantidad);
+			} catch (CuentaException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
 		}
 		case 3: {
@@ -91,13 +97,13 @@ public class PrincipalCuenta {
 
 		case 4: {
 			do {
-				System.out.println("�Estas seguro (s/n)?");
+				System.out.println("¿Estas seguro (s/n)?");
 				salir = teclado.nextLine().charAt(0);
 				salir = Character.toLowerCase(salir);
 			} while (salir != 's' && salir != 'n');
 
 			if (salir == 's') {
-				System.out.println("Dispones de " + cuenta.getSaldo() + "� de saldo.");
+				System.out.println("Dispones de " + cuenta.getSaldo() + "€ de saldo.");
 
 			}
 

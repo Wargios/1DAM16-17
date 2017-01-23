@@ -24,27 +24,25 @@ public class Cuenta {
 		return saldo;
 	}
 
-	public void setSaldo(double saldo) throws CuentaException {
+	private void setSaldo(double saldo) throws CuentaException {
 		if (saldo < 0) {
 			throw new CuentaException("Error");
 		} else
 			this.saldo = saldo;
 	}
 
-	public void ingreso(double cantidad) {
+	public void ingreso(double cantidad) throws CuentaException {
 		if (cantidad <= 0) {
-			// Excepcion
-			System.out.println("Error");
+			throw new CuentaException("Error");
 		} else {
 			saldo += cantidad;
 			numeroIngresos++;
 		}
 	}
 
-	public void reintegro(double cantidad) {
+	public void reintegro(double cantidad) throws CuentaException {
 		if (cantidad > saldo) {
-			// Excepcion
-			System.out.println("Error");
+			throw new CuentaException("Error");
 		} else {
 			saldo -= cantidad;
 			numeroReintegros++;
