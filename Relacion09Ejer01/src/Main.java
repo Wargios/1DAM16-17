@@ -30,7 +30,7 @@ public class Main {
 	private static final String[] ASIGNATURAS = { "BADAT", "PROGR", "SIINF", "LMSGI", "ENDES" };
 
 	public static void main(String[] args) {
-		int[][] notas = new int[NUM_ALUMNOS][ASIGNATURAS.length];
+		double[][] notas = new double[NUM_ALUMNOS][ASIGNATURAS.length];
 		int[] suspensos = new int[ASIGNATURAS.length + 1];
 		double[] medias = new double[ASIGNATURAS.length];
 
@@ -40,7 +40,7 @@ public class Main {
 
 	}
 
-	private static void calcularMedias(double[] medias, int[][] notas) {
+	private static void calcularMedias(double[] medias, double[][] notas) {
 
 		for (int posMedia = 0; posMedia < medias.length; posMedia++) {
 			medias[posMedia] = 0;
@@ -59,7 +59,7 @@ public class Main {
 		}
 	}
 
-	private static void introducirNotasAleatorias(int[][] notas) {
+	private static void introducirNotasAleatorias(double[][] notas) {
 		for (int i = 0; i < notas.length; i++) {
 			for (int j = 0; j < notas[0].length; j++) {
 				notas[i][j] = introducirNotaAleatoria();
@@ -67,7 +67,7 @@ public class Main {
 		}
 	}
 
-	private static void cuentaSuspendosArray(int[] suspensos, int[][] notas) {
+	private static void cuentaSuspendosArray(int[] suspensos, double[][] notas) {
 		int contadorSuspensos;
 
 		for (int j = 0; j < notas.length; j++) {
