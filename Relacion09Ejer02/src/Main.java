@@ -37,7 +37,7 @@ public class Main {
 		} catch (MatrizException e) {
 			System.out.println(e.getMessage());
 		}
-System.out.println("\nVAMOS A RESTAR");
+		System.out.println("\nVAMOS A RESTAR");
 		try {
 			MatrizMatematica restada = matrizMatematica.restaMatrizes(matrizMatematica1);
 			System.out.println(restada);
@@ -51,8 +51,7 @@ System.out.println("\nVAMOS A RESTAR");
 		} catch (MatrizException e) {
 			System.out.println(e.getMessage());
 		}
-
-		System.out.println("Producto diagonal "+matrizMatematica.productoElementosDiagonalPpal());
+		System.out.println("Producto diagonal " + matrizMatematica.productoElementosDiagonalPpal());
 
 	}
 

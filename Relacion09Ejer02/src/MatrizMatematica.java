@@ -116,7 +116,7 @@ public class MatrizMatematica {
 		}
 		return resul;
 	}
-
+	
 	public int productoElementosDiagonalPpal() {
 		int longitudMinima = matriz.length; // entre filas y columnas
 		int productoTotal = 1;
