@@ -22,7 +22,11 @@ public class Main {
 		else
 			System.out.println("no son iguales");
 
-		System.out.println(matrizMatematica.getElemento(1, 1));
+		try {
+			System.out.println(matrizMatematica.getElemento(1, 1));
+		} catch (MatrizException e) {
+			System.out.println(e.getMessage());
+		}
 		System.out.println("\nVAMOS A SUMAR");
 		try {
 			MatrizMatematica sumada = matrizMatematica.sumaMatrizes(matrizMatematica1);

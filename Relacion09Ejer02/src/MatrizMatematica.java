@@ -59,7 +59,9 @@ public class MatrizMatematica {
 		matriz[fila][columna] = valor;
 	}
 
-	public int getElemento(int fila, int columna) {
+	public int getElemento(int fila, int columna) throws MatrizException {
+		if (fila < 0 || columna < 0 || fila > matriz.length || columna > matriz[0].length)
+			throw new MatrizException("Error. Fuera de rango.");
 		return matriz[fila][columna];
 	}
 
@@ -116,29 +118,32 @@ public class MatrizMatematica {
 		}
 		return resul;
 	}
-	
+
 	public int productoElementosDiagonalPpal() {
 		int longitudMinima = matriz.length; // entre filas y columnas
 		int productoTotal = 1;
-		
+
 		if (longitudMinima > matriz[0].length)
 			longitudMinima = matriz[0].length;
 
 		for (int i = 0; i < longitudMinima; i++) {
-			productoTotal = productoTotal*matriz[i][i];
+			productoTotal = productoTotal * matriz[i][i];
 		}
 		return productoTotal;
 	}
 
-	public int calcularmMaximoElemento() {
-		int max = matriz[0][0];
-		for (int i = 0; i < matriz.length; i++) {
-			for (int j = 0; j < matriz[0].length; j++) {
-				if (max < matriz[i][j])
-					max = matriz[i][j];
-			}
+	public int calcularmMaximoFila(int fila) throws MatrizException {
+		int max = matriz[fila][0];
+
+		if (fila < 0 || fila > matriz.length)
+			throw new MatrizException("Error. Fuera de rango.");
+
+		for (int j = 0; j < matriz[fila].length; j++) {
+			if (max < matriz[fila][j])
+				max = matriz[fila][j];
 		}
 		return max;
+
 	}
 
 	public boolean equals(MatrizMatematica otra) {
