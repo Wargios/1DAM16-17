@@ -1,5 +1,6 @@
 /**
  * FALTA CONTROLAR QUE NO ATRAVIESE PAREDES
+ * 
  * @author Wargios
  *
  */
@@ -45,23 +46,38 @@ public class JuegoLaberinto {
 			if (jugador[0] - 1 < 0)
 				throw new JuegoException("Esa posicion está fuera del laberinto");
 
+			if (laberinto[jugador[0]- 1][jugador[1] ] == 'X')
+				throw new JuegoException("Hay una pared");
+
 			jugador[0] = jugador[0] - 1;
 
 		} else if (tecla == 'A') {
+			
 			if (jugador[1] - 1 < 0)
 				throw new JuegoException("Esa posicion está fuera del laberinto");
+			
+			if (laberinto[jugador[0]][jugador[1] - 1] == 'X')
+				throw new JuegoException("Hay una pared");
 
 			jugador[1] = jugador[1] - 1;
 
 		} else if (tecla == 'S') {
+			
 			if (jugador[0] + 1 >= laberinto.length)
 				throw new JuegoException("Esa posicion está fuera del laberinto");
+			
+			if (laberinto[jugador[0]+ 1][jugador[1] ] == 'X')
+				throw new JuegoException("Hay una pared");
 
 			jugador[0] = jugador[0] + 1;
 
 		} else { // 'D'
+			
 			if (jugador[1] + 1 >= laberinto[0].length)
 				throw new JuegoException("Esa posicion está fuera del laberinto");
+			
+			if (laberinto[jugador[0]][jugador[1] + 1] == 'X')
+				throw new JuegoException("Hay una pared");
 
 			jugador[1] = jugador[1] + 1;
 
@@ -85,7 +101,7 @@ public class JuegoLaberinto {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < laberinto.length; i++) {
 			for (int j = 0; j < laberinto[0].length; j++) {
-				sb.append(laberinto[i][j]);
+				sb.append(laberinto[i][j]+" ");
 			}
 			sb.append("\n");
 		}
