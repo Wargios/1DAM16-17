@@ -30,9 +30,14 @@ public abstract class Vehiculo {
 		this.gama = gama;
 	}
 
-	public abstract double calculoPrecioAlquiler(int dias);
+	public abstract double calculoPrecioAlquiler(int dias) throws VehiculoException;
+	
+	protected void comprobarDias(int dias) throws VehiculoException{
+		if(dias <=0)
+			throw new VehiculoException("Dias introducidos incorrectos.");
+	}
 
-	public double calculoPrecioBase() {
+	protected double calculoPrecioBase() {
 		double precio = 0;
 
 		switch (gama.toUpperCase()) {

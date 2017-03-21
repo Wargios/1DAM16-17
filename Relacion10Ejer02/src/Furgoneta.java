@@ -13,7 +13,8 @@ public class Furgoneta extends Vehiculo {
 	}
 
 	@Override
-	public double calculoPrecioAlquiler(int dias) {
+	public double calculoPrecioAlquiler(int dias) throws VehiculoException {
+		comprobarDias(dias);
 		double precioFinal = calculoPrecioBase();
 
 		precioFinal += pma * PRECIOxKG;

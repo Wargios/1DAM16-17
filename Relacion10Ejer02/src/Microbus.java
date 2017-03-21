@@ -12,9 +12,15 @@ public class Microbus extends Vehiculo {
 	public int getNumeroPlazas() {
 		return numeroPlazas;
 	}
+	public void setNumeroPlazas(int numeroPlazas) throws VehiculoException {
+		if(numeroPlazas <= 0)
+			throw new VehiculoException("Debe tener alguna plaza");
+		this.numeroPlazas = numeroPlazas;
+	}
 
 	@Override
-	public double calculoPrecioAlquiler(int dias) {
+	public double calculoPrecioAlquiler(int dias) throws VehiculoException {
+		comprobarDias(dias);
 		double precioFinal = calculoPrecioBase();
 		precioFinal += numeroPlazas * PRECIOxPLAZA;
 
