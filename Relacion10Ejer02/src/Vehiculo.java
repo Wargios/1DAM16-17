@@ -6,6 +6,11 @@ public abstract class Vehiculo {
 	private String matricula;
 	private String gama;
 
+	public Vehiculo(String matricula, String gama) throws VehiculoException {
+		this.matricula = matricula;
+		setGama(gama);
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
@@ -18,7 +23,10 @@ public abstract class Vehiculo {
 		return gama;
 	}
 
-	public void setGama(String gama) {
+	public void setGama(String gama) throws VehiculoException {
+		gama=gama.toUpperCase();
+		if (!(gama.equals("BAJA") || gama.equals("MEDIA") || gama.equals("ALTA")))
+			throw new VehiculoException("Error. Gama introducida incorrecta.");
 		this.gama = gama;
 	}
 
@@ -44,4 +52,10 @@ public abstract class Vehiculo {
 		}
 		return precio;
 	}
+
+	@Override
+	public String toString() {
+		return "Matricula: " + matricula + ", Gama: " + gama;
+	}
+
 }
