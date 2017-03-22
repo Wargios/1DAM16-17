@@ -3,7 +3,7 @@ public class Microbus extends Vehiculo {
 	private static final double PRECIOxPLAZA = 5;
 	private int numeroPlazas;
 
-	public Microbus(String matricula, String gama, int numeroPlazas) throws VehiculoException {
+	public Microbus(String matricula, TipoGama gama, int numeroPlazas) throws VehiculoException {
 		super(matricula, gama);
 		this.numeroPlazas = numeroPlazas;
 

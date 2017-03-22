@@ -63,8 +63,13 @@ public class PrincipalEjer02 {
 		switch (opcion) {
 
 		case 1:
-			vehiculos[contadorVehiculos] = altaVehiculo(solicitarVehiculo());
+			try {
+				vehiculos[contadorVehiculos] = altaVehiculo(solicitarVehiculo());
 			contadorVehiculos++;
+			} catch (IllegalArgumentException  e) {
+				System.out.println("Error.");
+			}
+			
 			break;
 
 		case 2:
@@ -115,19 +120,25 @@ public class PrincipalEjer02 {
 		Vehiculo vehiculo = null;
 		switch (nombreVehiculo) {
 		case "COCHE":
-			vehiculo = new Coche(solicitarString("Introduce la matrícula:"), solicitarString("Introduce la gama:"),
+			vehiculo = new Coche(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarBoolean("¿Es diesel?"));
 			break;
 		case "FURGONETA":
-			vehiculo = new Furgoneta(solicitarString("Introduce la matrícula:"), solicitarString("Introduce la gama:"),
+			vehiculo = new Furgoneta(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarInt("Introduce el PMA:"));
 			break;
 		case "MICROBUS":
-			vehiculo = new Microbus(solicitarString("Introduce la matrícula:"), solicitarString("Introduce la gama:"),
+			vehiculo = new Microbus(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarInt("Introduce el número de asientos:"));
 			break;
 		}
 		return vehiculo;
+	}
+
+	private static TipoGama solicitarGama(String string) {
+		System.out.println(string);
+		TipoGama gama = TipoGama.valueOf(teclado.nextLine().toUpperCase());
+		return gama;
 	}
 
 	private static boolean solicitarBoolean(String string) throws VehiculoException {

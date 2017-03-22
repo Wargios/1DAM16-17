@@ -4,7 +4,7 @@ public class Coche extends Vehiculo {
 	private static final double PRECIO_GASOLINA = 3.5;
 	private boolean diesel;
 
-	public Coche(String matricula, String gama, boolean diesel) throws VehiculoException {
+	public Coche(String matricula, TipoGama gama, boolean diesel) throws VehiculoException {
 		super(matricula, gama);
 		this.diesel = diesel;
 	}

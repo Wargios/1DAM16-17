@@ -4,9 +4,9 @@ public abstract class Vehiculo {
 	private static final double GAMA_MEDIA = 40;
 	private static final double GAMA_BAJA = 30;
 	private String matricula;
-	private String gama;
+	private TipoGama gama;
 
-	public Vehiculo(String matricula, String gama) throws VehiculoException {
+	public Vehiculo(String matricula, TipoGama gama) throws VehiculoException {
 		this.matricula = matricula;
 		setGama(gama);
 	}
@@ -19,14 +19,11 @@ public abstract class Vehiculo {
 		this.matricula = matricula;
 	}
 
-	public String getGama() {
+	public TipoGama getGama() {
 		return gama;
 	}
 
-	public void setGama(String gama) throws VehiculoException {
-		gama=gama.toUpperCase();
-		if (!(gama.equals("BAJA") || gama.equals("MEDIA") || gama.equals("ALTA")))
-			throw new VehiculoException("Error. Gama introducida incorrecta.");
+	public void setGama(TipoGama gama) throws VehiculoException {
 		this.gama = gama;
 	}
 
@@ -40,17 +37,17 @@ public abstract class Vehiculo {
 	protected double calculoPrecioBase() {
 		double precio = 0;
 
-		switch (gama.toUpperCase()) {
+		switch (gama) {
 
-		case "BAJA":
+		case BAJA:
 			precio = GAMA_BAJA;
 			break;
 
-		case "MEDIA":
+		case MEDIA:
 			precio = GAMA_MEDIA;
 			break;
 
-		case "ALTA":
+		case ALTA:
 			precio = GAMA_ALTA;
 			break;
 
