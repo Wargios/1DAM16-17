@@ -1,4 +1,13 @@
+package com.monroy.principalVehiculo;
 import java.util.Scanner;
+
+import com.monroy.vehiculo.AlmacenVehiculos;
+import com.monroy.vehiculo.Coche;
+import com.monroy.vehiculo.Furgoneta;
+import com.monroy.vehiculo.Microbus;
+import com.monroy.vehiculo.TipoGama;
+import com.monroy.vehiculo.Vehiculo;
+import com.monroy.vehiculo.VehiculoException;
 
 /**
  * Se debe presentar un menú con las siguientes opciones:
@@ -17,25 +26,24 @@ import java.util.Scanner;
  *
  */
 
-public class PrincipalEjer02 {
+public class PrincipalEjer02v2 {
 	private static Scanner teclado = new Scanner(System.in);
 	private static final int MAX_VEHICULOS = 200;
-	private static int contadorVehiculos = 0;
 
 	public static void main(String[] args) {
 
-		Vehiculo[] vehiculos = new Vehiculo[MAX_VEHICULOS];
+		AlmacenVehiculos almacenVehiculos = new AlmacenVehiculos(MAX_VEHICULOS);
 		int opcion = 0;
 		do {
 			mostrarMenu();
 			try {
 				opcion = solicitarInt("Introduce una opción:");
-			} catch (Exception e) {
+			} catch (NumberFormatException e) {
 				System.out.println("Debe ser un caracter válido.");
 			}
 
 			try {
-				tratarMenu(opcion, vehiculos);
+				tratarMenu(opcion, almacenVehiculos);
 			} catch (VehiculoException e) {
 				System.out.println(e.getMessage());
 			}
@@ -56,7 +64,7 @@ public class PrincipalEjer02 {
 
 	}
 
-	private static void tratarMenu(int opcion, Vehiculo[] vehiculos) throws VehiculoException {
+	private static void tratarMenu(int opcion, AlmacenVehiculos almacenVehiculos) throws VehiculoException {
 		String matricula;
 		Vehiculo vehiculo;
 		double precio;
@@ -64,17 +72,16 @@ public class PrincipalEjer02 {
 
 		case 1:
 			try {
-				vehiculos[contadorVehiculos] = altaVehiculo(solicitarVehiculo());
-			contadorVehiculos++;
-			} catch (IllegalArgumentException  e) {
+				almacenVehiculos.altaVehiculo(solicitarVehiculo());
+			} catch (IllegalArgumentException e) {
 				System.out.println("Error.");
 			}
-			
+
 			break;
 
 		case 2:
 			matricula = solicitarString("Introduce la matrícula del vehículo:");
-			vehiculo = buscarVehiculo(matricula, vehiculos);
+			vehiculo = almacenVehiculos.buscarVehiculo(matricula);
 			precio = vehiculo.calculoPrecioAlquiler(solicitarInt("Introduce el número de días"));
 			System.out.println("El total a pagar serían: " + precio + ".");
 			break;
@@ -89,50 +96,34 @@ public class PrincipalEjer02 {
 		}
 	}
 
-	private static Vehiculo buscarVehiculo(String matricula, Vehiculo[] vehiculos) throws VehiculoException {
-		boolean encontrado = false;
-		Vehiculo vehiculo = null;
-
-		for (int i = 0; i < contadorVehiculos && !encontrado; i++) {
-			if (vehiculos[i].getMatricula().equals(matricula)) {
-				encontrado = true;
-				vehiculo = vehiculos[i];
-			}
-		}
-
-		if (!encontrado)
-			throw new VehiculoException("Vehiculo no encontrado.");
-
-		return vehiculo;
-	}
-
-	private static String solicitarVehiculo() throws VehiculoException {
+	private static Vehiculo solicitarVehiculo() throws VehiculoException {
 		System.out.println("Coche, Furgoneta o Microbus:");
-		String vehiculo = teclado.nextLine().toUpperCase();
-
-		if (!(vehiculo.equals("COCHE") || vehiculo.equals("FURGONETA") || vehiculo.equals("MICROBUS")))
-			throw new VehiculoException("Vehiculo desconocido.");
-
-		return vehiculo;
-	}
-
-	private static Vehiculo altaVehiculo(String nombreVehiculo) throws VehiculoException {
+		String tipoVehiculo = teclado.nextLine().toUpperCase();
 		Vehiculo vehiculo = null;
-		switch (nombreVehiculo) {
+
+		switch (tipoVehiculo) {
+		
 		case "COCHE":
 			vehiculo = new Coche(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarBoolean("¿Es diesel?"));
 			break;
+			
 		case "FURGONETA":
 			vehiculo = new Furgoneta(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarInt("Introduce el PMA:"));
 			break;
+			
 		case "MICROBUS":
 			vehiculo = new Microbus(solicitarString("Introduce la matrícula:"), solicitarGama("Introduce la gama:"),
 					solicitarInt("Introduce el número de asientos:"));
 			break;
+
+		default:
+			throw new VehiculoException("Vehiculo desconocido.");
+			
 		}
 		return vehiculo;
+
 	}
 
 	private static TipoGama solicitarGama(String string) {

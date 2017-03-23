@@ -1,3 +1,4 @@
+package com.monroy.vehiculo;
 
 public class Furgoneta extends Vehiculo {
 	private static final double PRECIOxKG = 0.5;

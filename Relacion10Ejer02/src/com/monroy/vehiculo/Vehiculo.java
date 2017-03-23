@@ -1,3 +1,4 @@
+package com.monroy.vehiculo;
 
 public abstract class Vehiculo {
 	private static final double GAMA_ALTA = 50;

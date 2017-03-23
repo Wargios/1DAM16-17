@@ -1,3 +1,4 @@
+package com.monroy.vehiculo;
 
 public class VehiculoException extends Exception {
 	/**

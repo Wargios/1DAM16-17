@@ -1,3 +1,4 @@
+package com.monroy.vehiculo;
 
 public class Microbus extends Vehiculo {
 	private static final double PRECIOxPLAZA = 5;

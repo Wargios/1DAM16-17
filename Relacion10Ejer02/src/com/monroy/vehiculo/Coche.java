@@ -1,3 +1,4 @@
+package com.monroy.vehiculo;
 
 public class Coche extends Vehiculo {
 	private static final double PRECIO_DIESEL = 2;
