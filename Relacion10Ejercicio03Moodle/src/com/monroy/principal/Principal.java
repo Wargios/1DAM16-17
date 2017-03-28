@@ -13,7 +13,7 @@ public class Principal {
 	public static void main(String[] args) {
 		int opcion;
 
-		ArrayPersonajes personajes = new ArrayPersonajes(MAX_PERSONAJES);
+		ListaPersonajes personajes = new ListaPersonajes(MAX_PERSONAJES);
 
 		do {
 			opcion = mostrarMenu();
@@ -23,8 +23,10 @@ public class Principal {
 
 	}
 
-	private static void tratarMenu(int opcion, ArrayPersonajes personajes) {
-
+	private static void tratarMenu(int opcion, ListaPersonajes personajes) {
+		String nombrePersonaje;
+		String nombreHechizo;
+		String nombreObjetivo;
 		try {
 			switch (opcion) {
 
@@ -33,21 +35,35 @@ public class Principal {
 				break;
 
 			case 2:
-				personajes.magoAprendeHechizo(solicitarString("Introduce el nombre del mago: "),
-						solicitarString("Introduce el nombre del hechizo: "));
+				nombrePersonaje = solicitarString("Nombre del mago: ");
+				nombreHechizo = solicitarString("Hechizo: ");
+
+				personajes.magoAprendeHechizo(nombrePersonaje, nombreHechizo);
 				break;
+
 			case 3:
+				nombrePersonaje = solicitarString("Nombre del mago: ");
+				nombreHechizo = solicitarString("Hechizo: ");
+				nombreObjetivo = solicitarString("Nombre del personaje a lanzar el hechizo: ");
 
+				personajes.magoLanzaHechizo(nombrePersonaje, nombreHechizo, nombreObjetivo);
 				break;
+
 			case 4:
+				nombrePersonaje = solicitarString("Hechizo: ");
+				nombreObjetivo = solicitarString("Nombre del personaje a curar: ");
 
+				personajes.clerigoCuraPersonaje(nombrePersonaje, nombreObjetivo);
 				break;
+
 			case 5:
 
 				break;
+
 			case 6:
 
 				break;
+
 			case 7:
 				System.out.println("Adiós");
 				break;
@@ -66,9 +82,8 @@ public class Principal {
 
 		System.out.println("¿Clérigo o Mago?");
 
-		try {
 			respuesta = teclado.nextLine().toUpperCase();
-
+	
 			switch (respuesta) {
 			case "MAGO":
 				pj = new Mago(solicitarString("Introduce el nombre para el mago:"), solicitarRaza(),
@@ -81,10 +96,11 @@ public class Principal {
 						solicitarString("Nombre del dios: "));
 				break;
 
+			default:
+				throw new PersonajeException("Solo pueden ser clerigos o magos");
 			}
-		} catch (NumberFormatException e) {
-			System.out.println("Sólo pueden ser magos o clérigos.");
-		}
+			
+		
 		return pj;
 	}
 
