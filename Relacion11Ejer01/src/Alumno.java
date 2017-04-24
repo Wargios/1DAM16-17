@@ -26,7 +26,7 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return "[dni=" + dni + ", nombre=" + nombre + "]";
+		return "DNI: " + dni + ", NOMBRE: " + nombre;
 	}
 
 	@Override

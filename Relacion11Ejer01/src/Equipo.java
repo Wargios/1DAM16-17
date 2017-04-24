@@ -3,11 +3,11 @@ import java.util.Iterator;
 
 public class Equipo {
 	private String nombre;
-	HashSet<Alumno> alumnos;
+	HashSet<Alumno> conjuntoAlumnos;
 
 	public Equipo(String nombre) {
 		setNombre(nombre);
-		alumnos = new HashSet<Alumno>();
+		conjuntoAlumnos = new HashSet<Alumno>();
 	}
 
 	public String getNombre() {
@@ -19,29 +19,31 @@ public class Equipo {
 	}
 
 	public void annadirAlumno(Alumno alumno) throws EquipoException {
-		if (!alumnos.add(alumno))
+		if (!conjuntoAlumnos.add(alumno))
 			throw new EquipoException("El alumno ya se encuentra en el equipo.");
 	}
 
 	public void borrarAlumno(Alumno alumno) throws EquipoException {
-		if (!alumnos.remove(alumno))
+		if (!conjuntoAlumnos.remove(alumno))
 			throw new EquipoException("No existe el alumno para borrarlo.");
 	}
 
 	public Alumno buscarAlumno(Alumno alumnoBuscado) {
+		Alumno alumnoEncontrado = null;
 		Alumno alumnoActual;
 		boolean encontrado = false;
-		Iterator<Alumno> iterador = alumnos.iterator();
 
+		Iterator<Alumno> iterador = conjuntoAlumnos.iterator();
 		while (iterador.hasNext() && !encontrado) {
 			alumnoActual = iterador.next();
-			if (encontrado) {
-				
-			}
 
+			if (alumnoActual.equals(alumnoBuscado)) {
+				alumnoEncontrado = alumnoActual;
+				encontrado = true;
+			}
 		}
 
-		return enc;
+		return alumnoEncontrado;
 	}
 
 	public Equipo unir(Equipo otro) {
@@ -52,10 +54,20 @@ public class Equipo {
 		return null;
 	}
 
+	public String listadoAlumnos() {
+		StringBuilder sb = new StringBuilder();
+
+		for (Alumno a : conjuntoAlumnos) {
+			sb.append(a + "\n");
+		}
+
+		return sb.toString();
+	}
+
 	@Override
 	public String toString() { // mostrar nombre y todos los alumnos
-		// TODO Auto-generated method stub
-		return super.toString();
+
+		return ("Equipo: " + nombre + "\n" + listadoAlumnos());
 	}
 
 }
