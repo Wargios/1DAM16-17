@@ -1,19 +1,20 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public abstract class Persona {
-	
+
 	private static final int EDAD_MINIMA = 12;
-	
+
 	// Atributos
 	private String dni;
 	private String nombre;
 	private int edad;
 	private LinkedList<Mensaje> buzon;
-	
-	
+
 	// Constructor
-	public Persona(String dni,String nombre,int edad) throws IESException {
-		this.dni=dni;
+	public Persona(String dni, String nombre, int edad) throws IESException {
+		this.dni = dni;
 		this.nombre = nombre;
 		setEdad(edad);
 	}
@@ -37,29 +38,69 @@ public abstract class Persona {
 		this.edad = edad;
 	}
 
-
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
-	public void enviarMensaje(Persona persona, Mensaje mensaje){
-		persona.buzon.add(mensaje);
+
+	public void enviarMensaje(Persona persona, String texto) {
+		persona.buzon.add(new Mensaje(texto, this));
+
 	}
-	
-	public String mostrarCorreos(){
-		return null;
+
+	public String mostrarCorreos() throws IESException {
+		StringBuilder sb = new StringBuilder();
+		int contador = 1;
 		
+		if (buzon.size() == 0)
+			throw new IESException("No hay mensajes");
+		
+		for (Mensaje mensaje : buzon) {
+			sb.append("Mensaje " + contador + ": " + mensaje);
+			contador++;
+		}
+		return sb.toString();
+
 	}
-	public String mostrarCorreosPorRemitente(){
-		return null;
+
+	public String mostrarCorreosPorRemitente() throws IESException {
+		ArrayList<Mensaje> mensajesOrdenados = obtenerListaOrdenada();
+		StringBuilder sb = new StringBuilder();
+		int contador = 1;
 		
+		for (Mensaje mensaje : mensajesOrdenados) {
+			sb.append("Mensaje " + contador + ": " + mensaje);
+			contador++;
+		}
+		return sb.toString();
 	}
-	public void borrarMensaje(int numero){
+
+	private ArrayList<Mensaje> obtenerListaOrdenada() throws IESException {
+		if (buzon.size() == 0)
+			throw new IESException("No hay mensajes");
 		
+		ArrayList<Mensaje> mensajesOrdenados;
+		mensajesOrdenados = new ArrayList<>(buzon);
+		
+		Collections.sort(mensajesOrdenados);
+		return mensajesOrdenados;
 	}
-	public String buscarMensajes(String texto){
-		return null;
+
+	public void borrarMensaje(int numero) throws IESException {
+		if (numero < 1 || numero > buzon.size())
+			throw new IESException("Numero incorrecto.");
+		buzon.remove(numero - 1);
+	}
+
+	public String buscarMensajes(String texto) {
+		StringBuilder sb = new StringBuilder();
+		int contador = 1;
 		
+		for (Mensaje mensaje : buzon) {
+			if(mensaje.getTexto().contains(texto))
+				sb.append("Mensaje " + contador + ": " + mensaje);
+			contador++;
+		}
+		return sb.toString();
 	}
 
 	@Override
@@ -91,6 +132,5 @@ public abstract class Persona {
 			return false;
 		return true;
 	}
-		
-	
+
 }
