@@ -50,12 +50,12 @@ public abstract class Persona {
 	public String mostrarCorreos() throws IESException {
 		StringBuilder sb = new StringBuilder();
 		int contador = 1;
-		
+
 		if (buzon.size() == 0)
 			throw new IESException("No hay mensajes");
-		
+
 		for (Mensaje mensaje : buzon) {
-			sb.append("Mensaje " + contador + ": " + mensaje);
+			sb.append("Mensaje " + contador + ": " + mensaje + "\n");
 			contador++;
 		}
 		return sb.toString();
@@ -65,11 +65,10 @@ public abstract class Persona {
 	public String mostrarCorreosPorRemitente() throws IESException {
 		ArrayList<Mensaje> mensajesOrdenados = obtenerListaOrdenada();
 		StringBuilder sb = new StringBuilder();
-		int contador = 1;
-		
+
 		for (Mensaje mensaje : mensajesOrdenados) {
-			sb.append("Mensaje " + contador + ": " + mensaje);
-			contador++;
+			sb.append("Mensaje: " + mensaje + "\n");
+
 		}
 		return sb.toString();
 	}
@@ -77,10 +76,10 @@ public abstract class Persona {
 	private ArrayList<Mensaje> obtenerListaOrdenada() throws IESException {
 		if (buzon.size() == 0)
 			throw new IESException("No hay mensajes");
-		
+
 		ArrayList<Mensaje> mensajesOrdenados;
 		mensajesOrdenados = new ArrayList<>(buzon);
-		
+
 		Collections.sort(mensajesOrdenados);
 		return mensajesOrdenados;
 	}
@@ -94,9 +93,9 @@ public abstract class Persona {
 	public String buscarMensajes(String texto) {
 		StringBuilder sb = new StringBuilder();
 		int contador = 1;
-		
+
 		for (Mensaje mensaje : buzon) {
-			if(mensaje.getTexto().contains(texto))
+			if (mensaje.getTexto().contains(texto))
 				sb.append("Mensaje " + contador + ": " + mensaje);
 			contador++;
 		}

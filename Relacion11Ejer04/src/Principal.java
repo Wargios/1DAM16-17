@@ -37,8 +37,9 @@ public class Principal {
 		ArrayList<Persona> instituto = new ArrayList<Persona>();
 
 		try {
-			instituto.add(new Profesor("5549", "profe1", 30));
-			instituto.add(new Profesor("5563", "profe2", 30));
+			instituto.add(new Profesor("1", "profe1", 30));
+			instituto.add(new Profesor("2", "profe2", 30));
+			
 
 		} catch (IESException e) {
 			System.out.println(e.getMessage());
@@ -70,6 +71,7 @@ public class Principal {
 
 	private static void tratarMenu(int opcion, ArrayList<Persona> instituto) throws IESException {
 		String dniRemitente, dniDestinatario, texto;
+		Persona persona;
 
 		switch (opcion) {
 		case 1:
@@ -79,13 +81,50 @@ public class Principal {
 			buscarPersona(dniDestinatario, instituto).enviarMensaje(buscarPersona(dniRemitente, instituto), texto);
 			break;
 
+		case 2:
+			dniDestinatario = solicitarString("DNI de la persona:");
+			persona = buscarPersona(dniDestinatario, instituto);
+			System.out.println(persona.mostrarCorreos());
+			break;
+
+		case 3:
+			dniDestinatario = solicitarString("DNI de la persona:");
+			persona = buscarPersona(dniDestinatario, instituto);
+			System.out.println(persona.mostrarCorreosPorRemitente());
+			break;
+
+		case 4:
+			dniDestinatario = solicitarString("DNI de la persona:");
+			persona = buscarPersona(dniDestinatario, instituto);
+			System.out.println(persona.mostrarCorreos());
+			persona.borrarMensaje(solicitarInt("Número del mensaje a borrar:"));
+			
+			break;
+
+		case 5:
+			dniDestinatario = solicitarString("DNI de la persona:");
+			persona = buscarPersona(dniDestinatario, instituto);
+			persona.buscarMensajes(solicitarString("Texto a buscar: "));
+			break;
+
+		case 6:
+			System.out.println("Adiós");
+			break;
+
 		default:
+			System.out.println("Opcion no válida");
 			break;
 		}
 	}
 
+	private static int solicitarInt(String msg) {
+		System.out.println(msg);
+		return Integer.parseInt(teclado.nextLine());
+	}
+
 	private static String solicitarString(String msg) {
-		return null;
+		System.out.println(msg);
+		return teclado.nextLine();
 
 	}
 
@@ -93,16 +132,16 @@ public class Principal {
 		Persona persona = null;
 		boolean encontrado = false;
 		Iterator<Persona> it = instituto.iterator();
-		
-		while (it.hasNext()&&!encontrado) {
+
+		while (it.hasNext() && !encontrado) {
 			persona = (Persona) it.next();
-			if (persona.getDni().equals(dni)) 
+			if (persona.getDni().equals(dni))
 				encontrado = true;
 		}
-		
-		if (!encontrado) 
+
+		if (!encontrado)
 			throw new IESException("Persona no encontrada");
-		
+
 		return persona;
 	}
 
