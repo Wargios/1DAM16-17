@@ -17,6 +17,7 @@ public abstract class Persona {
 		this.dni = dni;
 		this.nombre = nombre;
 		setEdad(edad);
+		buzon = new LinkedList<Mensaje>();
 	}
 
 	// Métodos get y set

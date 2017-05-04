@@ -43,17 +43,16 @@ public class Principal {
 
 		} catch (IESException e) {
 			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
 
-		mostrarMenu();
+		
 		do {
 			opcion = Integer.parseInt(teclado.nextLine());
 			try {
+				mostrarMenu();
 				tratarMenu(opcion, instituto);
 			} catch (IESException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		} while (opcion != 6);
 
@@ -78,7 +77,7 @@ public class Principal {
 			dniRemitente = solicitarString("Introduce el DNI del remitente:");
 			dniDestinatario = solicitarString("Introduce el DNI del destinatario:");
 			texto = solicitarString("Introduce el texto:");
-			buscarPersona(dniDestinatario, instituto).enviarMensaje(buscarPersona(dniRemitente, instituto), texto);
+			buscarPersona(dniRemitente, instituto).enviarMensaje(buscarPersona(dniDestinatario, instituto), texto);
 			break;
 
 		case 2:
