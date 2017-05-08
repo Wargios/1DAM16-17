@@ -2,7 +2,7 @@ package com.monroy.principal;
 
 import java.util.Scanner;
 
-import com.monroy.correos.*;
+import com.monroy.clases.*;
 
 public class PrincipalIncompleto {
 
@@ -43,7 +43,7 @@ public class PrincipalIncompleto {
 
 	
 	private static int mostrarMenuCorreos() {
-
+ 
 		int opcion;
 		do {
 			System.out.println(
