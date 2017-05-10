@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Principal {
@@ -28,7 +30,8 @@ public class Principal {
 		System.out.println("3. Mostrar el número de pedidos pendientes");
 		System.out.println("4. Salir");
 	}
-	private static void mostrarMenuPedidos(){
+
+	private static void mostrarMenuPedidos() {
 		System.out.println("MENU > NUEVO PEDIDO");
 		System.out.println("1. Pizza Ofertada");
 		System.out.println("2. Pizza Personalizada");
@@ -36,25 +39,26 @@ public class Principal {
 	}
 
 	private static void tratarMenu(int op, ColaPedidos cola) {
-		
+
 		switch (op) {
-		
+
 		case 1:
-			mostrarMenuPedidos();
-			op = solicitarInt("Introduce una opcion");
-			tratarMenuPedido(op, cola);
+			do {
+				mostrarMenuPedidos();
+				op = solicitarInt("Introduce una opcion");
+				tratarMenuPedido(op, cola);
+			} while (op != 3);
 
 			break;
-			
+
 		case 2:
-			System.out.println("Atendiendo: "+ cola.atenderPedido());
-
+			System.out.println("Atendiendo: " + cola.atenderPedido());
 			break;
-			
+
 		case 3:
 			System.out.println(cola.toString());
 			break;
-			
+
 		case 4:
 			System.out.println("Adiós");
 			break;
@@ -66,8 +70,110 @@ public class Principal {
 	}
 
 	private static void tratarMenuPedido(int op, ColaPedidos cola) {
-		// TODO Auto-generated method stub
-		
+		Pizza pizza;
+		Pedido pedido = new Pedido(solicitarString("Introduce la direccion"));
+		cola.annadirPedido(pedido);
+
+		switch (op) {
+
+		case 1:
+			pizza = new PizzaOfertada(solicitarTamanno(), solicitarInt("Introduce el numero de la pizza: "));
+			pedido.annadirPizza(pizza);
+			break;
+
+		case 2:
+			pizza = tratarMenuPizzaPersonalizada();
+			pedido.annadirPizza(pizza);
+
+			break;
+
+		case 3:
+			System.out.println("Volviendo");
+			break;
+
+		default:
+			System.out.println("Opcion Incorrecta");
+			break;
+		}
+
+	}
+
+	private static void mostrarMenuPizzaPersonalizada() {
+		System.out.println("MENU > NUEVO PEDIDO > PIZZA PERSONALIZADA");
+		System.out.println("1. Añadir ingrediente");
+		System.out.println("2. Parar de añadir");
+	}
+
+	private static Pizza tratarMenuPizzaPersonalizada() {
+		int op;
+		PizzaPersonalizada pizza = new PizzaPersonalizada(solicitarTamanno());
+		String ingrediente;
+
+		do {
+
+			mostrarMenuPizzaPersonalizada();
+			System.out.println(pizza);
+			
+			op = solicitarInt("Introduce una opción:");
+
+			switch (op) {
+
+			case 1:
+				System.out.println("Lista de ingredientes:");
+				System.out.println(Ingrediente.values());
+
+				ingrediente = solicitarString("Introduce el ingrediente: ");
+
+				if (Ingrediente.valueOf(ingrediente) instanceof Ingrediente)
+					pizza.annadirIngrediente(Ingrediente.valueOf(ingrediente));
+
+				else
+					System.out.println("Ingrediente incorrecto");
+
+				break;
+
+			case 2:
+				System.out.println("Volviendo");
+				break;
+
+			default:
+				System.out.println("Opcion Incorrecta");
+				break;
+			}
+
+		} while (op != 2);
+
+		return pizza;
+	}
+
+	private static TipoTamanno solicitarTamanno() {
+		TipoTamanno tamano;
+		String str = solicitarString("Introduce el tamaño de la pizza: " + Arrays.toString(TipoTamanno.values()));
+
+		switch (TipoTamanno.valueOf(str.toUpperCase())) {
+
+		case GRANDE:
+			tamano = TipoTamanno.GRANDE;
+			break;
+
+		case MEDIANA:
+			tamano = TipoTamanno.MEDIANA;
+			break;
+
+		case PEQUENNA:
+			tamano = TipoTamanno.PEQUENNA;
+			break;
+
+		default:
+			System.out.println("Tamaño incorrecto");
+			tamano = solicitarTamanno();
+		}
+		return tamano;
+	}
+
+	private static String solicitarString(String string) {
+		System.out.println(string);
+		return teclado.nextLine();
 	}
 
 }

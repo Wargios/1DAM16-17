@@ -1,4 +1,4 @@
 
 public enum TipoTamanno {
-	GRANDE,MEDIANA,PEQUENNA
+	GRANDE, MEDIANA, PEQUENNA
 }

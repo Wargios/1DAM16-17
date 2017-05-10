@@ -1,5 +1,5 @@
 
-public enum Ingredientes {
+public enum Ingrediente {
 	HUEVO, CHORIZO, CEBOLLA, ROQUEFORT, PIMIENTO, SALCHICHAS, BACON, CHAMPINNONES
 
 }

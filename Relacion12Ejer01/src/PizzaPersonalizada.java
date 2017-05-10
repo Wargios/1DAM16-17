@@ -1,56 +1,58 @@
 import java.util.ArrayList;
 
 public class PizzaPersonalizada extends Pizza {
-	private ArrayList<Ingredientes> ingredientes;
+	private ArrayList<Ingrediente> ingrediente;
 
 	public PizzaPersonalizada(TipoTamanno tamanno) {
 		super(tamanno);
-		ingredientes = new ArrayList<Ingredientes>();
+		ingrediente = new ArrayList<Ingrediente>();
 	}
 
-	public void annadirIngrediente(int num) {
-		switch (num) {
-		case 1:
-			ingredientes.add(Ingredientes.BACON);
-			break;
-			
-		case 2:
-			ingredientes.add(Ingredientes.CEBOLLA);
-			break;
-			
-		case 3:
-			ingredientes.add(Ingredientes.CHAMPINNONES);
-			break;
-			
-		case 4:
-			ingredientes.add(Ingredientes.CHORIZO);
-			break;
-			
-		case 5:
-			ingredientes.add(Ingredientes.HUEVO);
-			break;
-			
-		case 6:
-			ingredientes.add(Ingredientes.PIMIENTO);
-			break;
-			
-		case 7:
-			ingredientes.add(Ingredientes.ROQUEFORT);
-			break;
-			
-		case 8:
-			ingredientes.add(Ingredientes.SALCHICHAS);
-			break;
-
-		default:
-			
-			break;
-		}
+	public void annadirIngrediente(Ingrediente ingrediente) {
+		this.ingrediente.add(ingrediente);
+//		 switch (ingrediente) {
+//		 case 1:
+//		 ingredientes.add(Ingrediente.BACON);
+//		 break;
+//		
+//		 case 2:
+//		 ingredientes.add(Ingredientes.CEBOLLA);
+//		 break;
+//		
+//		 case 3:
+//		 ingredientes.add(Ingrediente.CHAMPINNONES);
+//		 break;
+//		
+//		 case 4:
+//		 ingrediente.add(Ingrediente.CHORIZO);
+//		 break;
+//		
+//		 case 5:
+//		 ingrediente.add(Ingredientes.HUEVO);
+//		 break;
+//		
+//		 case 6:
+//		 ingrediente.add(Ingrediente.PIMIENTO);
+//		 break;
+//		
+//		 case 7:
+//		 ingrediente.add(Ingrediente.ROQUEFORT);
+//		 break;
+//		
+//		 case 8:
+//		 ingredientes.add(Ingredientes.SALCHICHAS);
+//		 break;
+//		
+//		 default:
+//		
+//		 break;
+//		 }
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return (super.toString() + " Ingredientes: " + ingredientes.toString());
+		return (super.toString() + " Ingredientes: " + ingrediente.toString());
 	}
+
 }
