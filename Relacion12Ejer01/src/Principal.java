@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -105,40 +104,34 @@ public class Principal {
 	}
 
 	private static Pizza tratarMenuPizzaPersonalizada() {
-		int op;
+		int op = 0;
 		PizzaPersonalizada pizza = new PizzaPersonalizada(solicitarTamanno());
-		String ingrediente;
 
 		do {
+			try {
+				mostrarMenuPizzaPersonalizada();
+				System.out.println(pizza);
 
-			mostrarMenuPizzaPersonalizada();
-			System.out.println(pizza);
-			
-			op = solicitarInt("Introduce una opción:");
+				op = solicitarInt("Introduce una opción:");
 
-			switch (op) {
+				switch (op) {
 
-			case 1:
-				System.out.println("Lista de ingredientes:");
-				System.out.println(Ingrediente.values());
+				case 1:
+					menuIngredientes(pizza);
 
-				ingrediente = solicitarString("Introduce el ingrediente: ");
+					break;
 
-				if (Ingrediente.valueOf(ingrediente) instanceof Ingrediente)
-					pizza.annadirIngrediente(Ingrediente.valueOf(ingrediente));
+				case 2:
+					System.out.println("Volviendo");
+					break;
 
-				else
-					System.out.println("Ingrediente incorrecto");
+				default:
+					System.out.println("Opcion Incorrecta");
+					break;
+				}
 
-				break;
-
-			case 2:
-				System.out.println("Volviendo");
-				break;
-
-			default:
-				System.out.println("Opcion Incorrecta");
-				break;
+			} catch (PizzaException e) {
+				System.out.println(e.getMessage());
 			}
 
 		} while (op != 2);
@@ -146,21 +139,41 @@ public class Principal {
 		return pizza;
 	}
 
+	private static void menuIngredientes(PizzaPersonalizada pizza) throws PizzaException {
+		String ingrediente;
+
+		System.out.println("Lista de ingredientes:");
+		System.out.println(Arrays.toString(Ingrediente.values()));
+
+		ingrediente = solicitarString("Introduce el ingrediente: ").toUpperCase();
+		
+		switch (ingrediente) {
+		case "HUEVO":
+			
+			break;
+			
+			
+
+		default:
+			break;
+		}
+	}
+
 	private static TipoTamanno solicitarTamanno() {
 		TipoTamanno tamano;
-		String str = solicitarString("Introduce el tamaño de la pizza: " + Arrays.toString(TipoTamanno.values()));
+		String str = solicitarString("Introduce el tamaño de la pizza: " + Arrays.toString(TipoTamanno.values())).toUpperCase();
 
-		switch (TipoTamanno.valueOf(str.toUpperCase())) {
+		switch (str) {
 
-		case GRANDE:
+		case "GRANDE":
 			tamano = TipoTamanno.GRANDE;
 			break;
 
-		case MEDIANA:
+		case "MEDIANA":
 			tamano = TipoTamanno.MEDIANA;
 			break;
 
-		case PEQUENNA:
+		case "PEQUEÑA":
 			tamano = TipoTamanno.PEQUENNA;
 			break;
 

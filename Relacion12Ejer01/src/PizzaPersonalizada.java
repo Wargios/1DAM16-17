@@ -1,52 +1,17 @@
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PizzaPersonalizada extends Pizza {
-	private ArrayList<Ingrediente> ingrediente;
+	private HashSet<Ingrediente> ingrediente;
 
 	public PizzaPersonalizada(TipoTamanno tamanno) {
 		super(tamanno);
-		ingrediente = new ArrayList<Ingrediente>();
+		ingrediente = new HashSet<Ingrediente>();
 	}
 
-	public void annadirIngrediente(Ingrediente ingrediente) {
-		this.ingrediente.add(ingrediente);
-//		 switch (ingrediente) {
-//		 case 1:
-//		 ingredientes.add(Ingrediente.BACON);
-//		 break;
-//		
-//		 case 2:
-//		 ingredientes.add(Ingredientes.CEBOLLA);
-//		 break;
-//		
-//		 case 3:
-//		 ingredientes.add(Ingrediente.CHAMPINNONES);
-//		 break;
-//		
-//		 case 4:
-//		 ingrediente.add(Ingrediente.CHORIZO);
-//		 break;
-//		
-//		 case 5:
-//		 ingrediente.add(Ingredientes.HUEVO);
-//		 break;
-//		
-//		 case 6:
-//		 ingrediente.add(Ingrediente.PIMIENTO);
-//		 break;
-//		
-//		 case 7:
-//		 ingrediente.add(Ingrediente.ROQUEFORT);
-//		 break;
-//		
-//		 case 8:
-//		 ingredientes.add(Ingredientes.SALCHICHAS);
-//		 break;
-//		
-//		 default:
-//		
-//		 break;
-//		 }
+	public void annadirIngrediente(Ingrediente ingrediente) throws PizzaException {
+		if(!this.ingrediente.add(ingrediente))
+			throw new PizzaException("Ya se encuentra el ingrediente");
+
 	}
 
 	@Override
