@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -32,33 +33,24 @@ public class Principal {
 		do {
 			mostrarMenu();
 			op = solicitarInt("Introduce una opción: ");
-			try {
-				tratarMenu(op);
-			} catch (IOException e) {
-				System.out.println("Error.");
-				// e.printStackTrace();
-			}
+			tratarMenu(op);
 		} while (op != 4);
 
 	}
 
-	private static void tratarMenu(int op) throws IOException {
-		File directorio;
-		FileWriter archivo;
-
+	private static void tratarMenu(int op) {
+		
 		switch (op) {
 		case 1:
-			directorio = new File("/" + solicitarString("Introduce el nombre del directorio: ") + "/");
-			System.out.println(directorio.isDirectory());
+			crearDirectorio();
 			break;
 
 		case 2:
-			archivo = new FileWriter(solicitarString("Introduce el nombre del directorio: "));
-			archivo.write(solicitarString("Introduce el texto para el archivo: "));
+			crearFichero();
 			break;
 
 		case 3:
-			
+			borrarFichero();
 			break;
 
 		case 4:
@@ -91,6 +83,68 @@ public class Principal {
 		System.out.println(msg);
 		return Integer.parseInt(teclado.nextLine());
 
+	}
+
+	private static void crearDirectorio() {
+		String nombre;
+		boolean creado;
+		File fichero;
+
+		nombre = solicitarString("Introduce el nombre del directorio: ");
+		fichero = new File(nombre);
+		if (fichero.exists())
+			System.out.println("Ya existe el directorio");
+		else {
+			creado = fichero.mkdirs();
+			if (creado)
+				System.out.println("Directorio creado");
+			else
+				System.out.println("No se pudo crear el directorio");
+		}
+	}
+
+	private static void crearFichero() {
+		String nombre, contenido;
+
+		nombre = solicitarString("Introduce el nombre del archivo: ");
+
+		File fichero = new File(nombre);
+
+		if (fichero.exists() && fichero.isFile())
+			System.out.println("El archivo ya existe.");
+
+		else {
+			contenido = solicitarString("Introduce la cadena de texto: ");
+
+			try {
+				FileWriter flujoEscritura = new FileWriter(fichero);
+				PrintWriter filtroEscritura = new PrintWriter(flujoEscritura);
+
+				filtroEscritura.print(contenido);
+
+				filtroEscritura.close();
+				flujoEscritura.close();
+				System.out.println("Fichero creado correctamente");
+
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	private static void borrarFichero() {
+		String nombre;
+
+		nombre = solicitarString("Introduce el nombre del archivo a borrar: ");
+
+		File fichero = new File(nombre);
+		if (!(fichero.exists() && fichero.isFile())) 
+			System.out.println("No esxite el archivo");
+
+		else{
+			fichero.delete();
+			System.out.println("Archivo borrado");
+		}
 	}
 
 }
