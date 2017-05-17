@@ -18,7 +18,7 @@ import java.util.Scanner;
  * 
  * 3. Borrar fichero de texto: Se solicitará el nombre del fichero y se borrará.
  * Se mostrará un mensaje si no se ha podido borrar.
- * 
+ *
  * 4. Salir.
  * 
  * @author Wargios
