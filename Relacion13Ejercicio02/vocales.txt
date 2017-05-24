@@ -1,0 +1,5 @@
+La vocal A aparece 7 veces
+La vocal E aparece 0 veces
+La vocal I aparece 1 veces
+La vocal O aparece 1 veces
+La vocal U aparece 2 veces
